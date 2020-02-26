@@ -41,7 +41,7 @@ function onMessageHandler (target, context, msg, self) {
     console.log(`* Executed ${commandName} command`);
   }
   else if (commandName === '!elo') {
-    await fetchDataFromRiotApi();
+    fetchDataFromRiotApi();
     client.say(target, elo)
     console.log(`* Executed ${commandName} command`);
   }
