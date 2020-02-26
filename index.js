@@ -1,4 +1,6 @@
 const tmi = require('tmi.js');
+const fetch = require('node-fetch');
+const elo = "";
 
 // Define configuration options
 const opts = {
@@ -38,9 +40,15 @@ function onMessageHandler (target, context, msg, self) {
     client.say(target, accounts);
     console.log(`* Executed ${commandName} command`);
   }
-  else {
-    console.log(`* Unknown command ${commandName}`);
+  else if (commandName === '!elo') {
+    await fetchDataFromRiotApi();
+    client.say(target, elo)
+    console.log(`* Executed ${commandName} command`);
   }
+}
+
+function overwriteElo(eloNew) {
+  elo = eloNew;
 }
 
 function getAccounts() {
@@ -52,6 +60,16 @@ function rollDice () {
   const sides = 6;
   return Math.floor(Math.random() * sides) + 1;
 }
+
+await function fetchDataFromRiotApi(){
+   fetch('https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/i1Uep2SH6PiEhh33T5mXj4BJImgIA0pf6vXIgROYk2P0i3k?api_key=RGAPI-44886ab5-4ddc-4e1e-b703-daf934eeb0e9')
+    .then(response =>response.json())
+    .then(json => {
+      console.log(json);
+      overwriteElo(json[0].tier + ' ' + json[0].rank);
+    });
+}
+
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`);
