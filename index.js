@@ -17,9 +17,14 @@ const client = new tmi.client(opts);
 // Register our event handlers (defined below)
 client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
+client.on("join", onJoin);
 
 // Connect to Twitch:
 client.connect();
+
+function onJoin (channel, username, self) {
+  client.action("netaspid", username + " , приветствует тебя");
+}
 
 // Called every time a message comes in
 function onMessageHandler (target, context, msg, self) {
