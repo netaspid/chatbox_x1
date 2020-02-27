@@ -40,10 +40,11 @@ function onMessageHandler (target, context, msg, self) {
     console.log(`* Executed ${commandName} command`);
   }
   else if (commandName === '!elo') {
-    let elo = fetchDataFromRiotApi();
-    console.log(elo);
-    client.say(target, "account showing issues")
-    console.log(`* Executed ${commandName} command`);
+    fetchDataFromRiotApi().then(elo => {
+      console.log(elo);
+      client.say(target, "account showing issues")
+      console.log(`* Executed ${commandName} command`);
+    });
   }
 }
 
