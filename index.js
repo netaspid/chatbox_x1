@@ -23,7 +23,7 @@ client.on("join", onJoin);
 client.connect();
 
 function onJoin (channel, username, self) {
-  client.action( username + " , приветствую тебя дружище!");
+  client.action("netaspid", username + " , приветствую тебя!");
 }
 
 // Called every time a message comes in
