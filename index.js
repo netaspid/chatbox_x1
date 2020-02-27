@@ -61,7 +61,7 @@ function rollDice () {
 
 async function fetchDataFromRiotApi(){
    let response = await fetch('https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/i1Uep2SH6PiEhh33T5mXj4BJImgIA0pf6vXIgROYk2P0i3k?api_key=RGAPI-44886ab5-4ddc-4e1e-b703-daf934eeb0e9');
-   return response;
+   return response.json();
 
 }
 
