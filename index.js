@@ -41,7 +41,7 @@ function onMessageHandler (target, context, msg, self) {
   }
   else if (commandName === '!elo') {
     fetchDataFromRiotApi().then(elo => {
-      eloRank = elo[0].tier + ' ' + elo[0].rank;
+      eloRank = `@${context.username}, netaspid's main account rank now is: ` + elo[0].tier + ' ' + elo[0].rank;
       client.say(target, eloRank);
       console.log(`* Executed ${commandName} command`);
     });
