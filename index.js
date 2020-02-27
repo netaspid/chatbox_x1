@@ -41,8 +41,8 @@ function onMessageHandler (target, context, msg, self) {
   }
   else if (commandName === '!elo') {
     fetchDataFromRiotApi().then(elo => {
-      console.log(elo);
-      client.say(target, "account showing issues")
+      eloRank = elo[0].tier + ' ' + elo[0].rank;
+      client.say(target, eloRank);
       console.log(`* Executed ${commandName} command`);
     });
   }
